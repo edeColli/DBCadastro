@@ -18,10 +18,10 @@ def cadastrar_categoria():
 def listar_categoria():
     conexao = sqlite3.connect('db.sqlite3')
     cursor = conexao.cursor()
-    sql = 'select * from categoria'
+    sql = 'select id, nome from categoria'
     resultados = cursor.execute(sql)
     for resultado in resultados:
-        print(resultado)
+        print(resultado[0], resultado[1])
     conexao.close()
 
 

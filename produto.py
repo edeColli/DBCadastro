@@ -20,10 +20,13 @@ def cadastrar_produto():
 def listar_produto():
     conexao = sqlite3.connect('db.sqlite3')
     cursor = conexao.cursor()
-    sql = 'select * from produto'
+    sql = '''select p.id, p.nome, c.nome, p.descricao 
+               from produto p 
+               join categoria c on c.id = p.id_categoria'''
     resultados = cursor.execute(sql)
     for resultado in resultados:
-        print(resultado)
+        print('Código: ', resultado[0], ' Nome: ', resultado[1],
+              ' Categoria: ', resultado[2], ' Descrição: ', resultado[3])
     conexao.close()
 
 
